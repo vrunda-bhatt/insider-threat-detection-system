@@ -1063,12 +1063,23 @@ if st.session_state.analysis_done:
         )
         
         st.subheader("Where are the anomalies?")
-        st.dataframe(res['user_stats'].style.format({
-            "Anomaly Rate (%)": "{:.2f}%",
-            "Max Error": "{:.6f}"
-        }).background_gradient(
-            cmap='Reds', subset=['Anomaly Rate (%)', 'Anomalies']
-        ), use_container_width=True)
+        
+        # Display dataframe with pandas styling (now with proper dependencies)
+        try:
+            styled_df = res['user_stats'].style.format({
+                "Anomaly Rate (%)": "{:.2f}%",
+                "Max Error": "{:.6f}"
+            }).background_gradient(
+                cmap='Reds', subset=['Anomaly Rate (%)', 'Anomalies']
+            )
+            st.dataframe(styled_df, use_container_width=True)
+        except Exception as e:
+            # Fallback to simple dataframe if styling fails
+            st.warning(f"Styling not available: {e}")
+            display_df = res['user_stats'].copy()
+            display_df['Anomaly Rate (%)'] = display_df['Anomaly Rate (%)'].apply(lambda x: f"{x:.2f}%")
+            display_df['Max Error'] = display_df['Max Error'].apply(lambda x: f"{x:.6f}")
+            st.dataframe(display_df, use_container_width=True)
 
         st.subheader("Top 5 Anomalous Users")
         
