@@ -1171,14 +1171,14 @@ if st.session_state.analysis_done:
         with c1:
             st.subheader("Reconstruction Error Curve")
             if loss_exists:
-                st.image('training_loss.png', caption='Reconstruction Error Curve', use_column_width=True)
+                st.image('training_loss.png', caption='Reconstruction Error Curve', use_container_width=True)
             else:
                 st.plotly_chart(fig_loss, use_container_width=True)
 
         with c2:
             st.subheader("ROC-AUC Score")
             if roc_exists:
-                st.image('roc_curves.png', caption='ROC-AUC Score', use_column_width=True)
+                st.image('roc_curves.png', caption='ROC-AUC Score', use_container_width=True)
             else:
                 st.plotly_chart(fig_roc, use_container_width=True)
         
