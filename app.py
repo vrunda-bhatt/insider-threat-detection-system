@@ -373,7 +373,7 @@ def load_data(uploaded_file):
         st.info("No file uploaded. Using 'synthetic_insider_threat.csv' test dataset.")
         # Create a mock DataFrame that mimics 'synthetic_insider_threat.csv'
         data = {
-            'Timestamp': pd.to_datetime(pd.date_range(start='2023-01-01', periods=1000, freq='H')),
+            'Timestamp': pd.to_datetime(pd.date_range(start='2023-01-01', periods=1000, freq='h')),
             'User_ID': np.random.choice(['User_A', 'User_B', 'User_C', 'User_D', 'User_E'], 1000),
             'Action': np.random.choice(['login', 'file_access', 'email_sent', 'failed_login'], 1000, p=[0.4, 0.3, 0.2, 0.1]),
             'Suspicious': np.zeros(1000)
