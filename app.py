@@ -219,10 +219,13 @@ st.markdown("""
     }
     
     /* Active tab styling */
-    button[data-baseweb="tab"][aria-selected="true"] {
-        color: #1e293b !important;  /* Dark color for active tab */
-        font-weight: 600 !important;
+    .stTabs [data-baseweb="tab"][aria-selected="true"] {
         border-bottom: 2px solid #3b82f6 !important;
+    }
+
+    .stTabs [data-baseweb="tab"][aria-selected="true"] > div[data-testid="stMarkdownContainer"] > p {
+        color: #1e293b !important;
+        font-weight: 600 !important;
     }
     
     /* Tab hover effect */
